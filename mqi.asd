@@ -8,6 +8,7 @@
                 ((:file "package")
                  (:file "sxql")
                  (:file "relation")
+                 (:file "relation-to-sql")
                  (:file "query")
                  (:file "mqi"))))
   :description "Mito Querying Interface"
@@ -23,6 +24,7 @@
                 :components
                 ((:file "package")
                  (:test-file "relation")
+                 (:test-file "relation-to-sql")
                  (:test-file "mqi"))))
   :description "Test system for mqi"
   :perform (test-op (op c)

@@ -16,6 +16,9 @@
       'foo))
 
 ;;
+;; JOINS clause
+
+;;
 ;; WHERE clause
 
 (subtest "RELATION-WHERE"

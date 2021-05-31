@@ -2,12 +2,14 @@
 
 (defun call-with-transaction (func)
   (mito:execute-sql "BEGIN")
-  (prog1
-      (handler-bind ((error #'(lambda (e)
-                                (declare (ignore e))
-                                (mito:execute-sql "ROLLBACK"))))
-        (funcall func))
-    (mito:execute-sql "COMMIT")))
+  (let (success-p)
+    (unwind-protect
+         (progn
+           (funcall func)
+           (mito:execute-sql "COMMIT")
+           (setf success-p t))
+      (unless success-p
+        (mito:execute-sql "ROLLBACK")))))
 
 (defmacro with-transaction (&body body)
   `(call-with-transaction #'(lambda () ,@body)))

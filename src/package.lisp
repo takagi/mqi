@@ -32,6 +32,7 @@
            :find
            :count
            :maximum
+           :pluck
            ;; Util
            :call-with-transaction
            :with-transaction))

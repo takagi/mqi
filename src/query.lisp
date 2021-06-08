@@ -48,3 +48,17 @@
               (apply-maximum column relation))))
     (getf (car (mito:retrieve-by-sql sql))
           :--mqi-max)))
+
+(defun pluck (columns relation
+              &key ((:connection mito:*connection*) mito:*connection*)
+              &aux (single-p (not (consp columns)))
+                   (relation (ensure-relation relation)))
+  (let ((sql (relation-to-sql
+              (apply-select columns relation))))
+    (if single-p
+        (loop for row in (mito:retrieve-by-sql sql)
+           collect (cadr row))
+        (loop for row in (mito:retrieve-by-sql sql)
+           collect
+             (loop for (column value) on row by #'cddr
+                collect value)))))

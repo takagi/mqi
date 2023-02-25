@@ -30,4 +30,16 @@
   (is (relation-to-sql-string (mqi:where (:= :foo 1) 'foo))
       "SELECT * FROM foo WHERE (foo = ?)"))
 
+(subtest "ORDER clause"
+  )
+
+(subtest "LIMIT clause"
+  )
+
+(subtest "LOCK clause"
+  )
+
+(subtest "MAXIMUM clause"
+  )
+
 (finalize)

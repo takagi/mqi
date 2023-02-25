@@ -55,13 +55,14 @@
           (append `((:where (:and ,condition0 ,condition))) relation0))
         (append `((:where ,condition)) relation))))
 
-(defun expand-list (x)
-  (if (listp x)
-      `(list ,@(mapcar #'expand-list x))
+(defun expand-op (x)
+  (if (and (listp x)
+           (keywordp (car x)))
+      `(list ,@(mapcar #'expand-op x))
       x))
 
 (defmacro where (condition relation)
-  `(apply-where ,(expand-list condition) ,relation))
+  `(apply-where ,(expand-op condition) ,relation))
 
 ;;
 ;; LIMIT clause

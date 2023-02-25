@@ -10,7 +10,7 @@
                  &aux (relation (ensure-relation relation)))
   (let ((class (relation-from-table-class relation))
         (sql (relation-to-sql relation)))
-    (mito.dao:select-by-sql class sql)))
+    (values (mito.dao:select-by-sql class sql))))
 
 (defun take (relation
              &key ((:connection mito:*connection*) mito:*connection*)

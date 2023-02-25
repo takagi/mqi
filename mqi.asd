@@ -10,6 +10,7 @@
                  (:file "relation")
                  (:file "relation-to-sql")
                  (:file "query")
+                 (:file "util")
                  (:file "mqi"))))
   :description "Mito Querying Interface"
   :in-order-to ((test-op (test-op "mqi/tests"))))
@@ -27,6 +28,4 @@
                  (:test-file "relation-to-sql")
                  (:test-file "mqi"))))
   :description "Test system for mqi"
-  :perform (test-op (op c)
-             (let ((prove:*enable-colors* nil))
-               (symbol-call :prove :run c))))
+  :perform (test-op (op c) (symbol-call :prove :run c)))

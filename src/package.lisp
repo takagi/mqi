@@ -27,4 +27,7 @@
            :take
            :find-by
            :find
-           :maximum))
+           :maximum
+           ;; Util
+           :call-with-transaction
+           :with-transaction))
